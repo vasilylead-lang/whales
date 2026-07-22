@@ -1,0 +1,5 @@
+# Swap the host below for the real production domain before deploy.
+User-agent: *
+Allow: /
+
+Sitemap: https://whales.example.com/sitemap.xml

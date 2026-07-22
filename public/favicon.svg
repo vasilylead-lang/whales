@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Whale">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a4d8c" />
+      <stop offset="1" stop-color="#01030a" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)" />
+  <path
+    fill="#5ffbf1"
+    d="M8 38c8-8 20-9 30-6 5 1.5 9 2 12 0-1.5 3-1.5 5 0 7-3 0-6-0.6-9-1.6-8-2.6-18-2-25 2-3.2 1.8-6.4-.2-8-1.4Z"
+  />
+  <circle cx="17" cy="36" r="2" fill="#01030a" />
+</svg>
