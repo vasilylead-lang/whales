@@ -113,6 +113,8 @@ export const whales = [
     group: 'Toothed',
     zone: 'midnight',
     emoji: '🐋',
+    plate: true,
+    plateNo: 'Pl. XIII',
     length: 'up to ~18 m',
     weight: 'up to ~57 t',
     status: 'Vulnerable',

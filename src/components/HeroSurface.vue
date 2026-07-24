@@ -10,7 +10,11 @@
     </div>
 
     <div class="hero-inner content">
-      <p class="hero-eyebrow">An immersive descent · 0 m → the abyss</p>
+      <p class="hero-eyebrow">
+        An immersive descent ·
+        <a class="hero-eyebrow-link" href="#sunlight">the light side</a>
+        ← 0 m → the abyss
+      </p>
       <h1>The Whales of the Ocean</h1>
       <p class="hero-lede">
         Take a breath. We’re diving from the sunlit surface to the crushing dark —
@@ -25,15 +29,27 @@
 
     <svg
       class="hero-whale"
-      viewBox="0 0 600 200"
+      viewBox="0 0 640 210"
       role="img"
-      aria-label="Silhouette of a great whale gliding through the water"
+      aria-label="Silhouette of a sperm whale gliding through the water"
     >
+      <!-- A sperm whale, swimming right: the huge block-shaped head (about a third
+           of the body), tapering body with low dorsal knuckles on the back third,
+           the underslung jaw, and thick triangular tail flukes. -->
       <path
         fill="rgba(2, 12, 30, 0.42)"
-        d="M20 120 C 90 70, 190 60, 300 78 C 360 88, 420 92, 470 82 C 500 76, 520 60, 540 52 C 525 70, 520 86, 528 100 C 545 96, 565 92, 585 96 C 560 106, 540 116, 520 120 C 470 132, 400 138, 320 134 C 210 128, 110 138, 60 150 C 40 142, 26 132, 20 120 Z"
+        d="M50 96 C 50 76 66 66 100 64 C 150 61 210 62 252 68
+           C 322 76 382 80 430 84 C 442 80 452 76 462 82
+           C 476 89 486 84 496 88 C 510 93 520 91 530 93
+           C 542 95 552 95 560 94 L 614 76 C 604 90 600 98 612 110
+           L 618 118 C 596 114 572 110 554 112 C 470 118 380 124 300 125
+           C 240 126 168 128 126 124 C 96 121 70 116 58 106
+           C 50 98 50 100 50 96 Z"
       />
-      <circle cx="70" cy="118" r="4" fill="rgba(95,251,241,0.5)" />
+      <!-- underslung jaw line -->
+      <path d="M58 104 C 98 112 142 112 170 107"
+            fill="none" stroke="rgba(234, 249, 253, 0.16)" stroke-width="1.5" />
+      <circle cx="206" cy="96" r="3.6" fill="rgba(95,251,241,0.5)" />
     </svg>
 
     <div class="hero-scroll" aria-hidden="true">
@@ -117,6 +133,19 @@
   color: var(--color-deep);
   opacity: 0.75;
   margin-bottom: 1rem;
+}
+
+.hero-eyebrow-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color var(--dur-interactive) var(--ease);
+}
+
+.hero-eyebrow-link:hover,
+.hero-eyebrow-link:focus-visible {
+  color: #063056;
 }
 
 .hero h1 {

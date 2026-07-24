@@ -25,7 +25,7 @@ const year = new Date().getFullYear()
         and the
         <a href="https://www.iucnredlist.org/" target="_blank" rel="noreferrer">IUCN Red List</a>.
       </p>
-      <p class="footer-copy">© {{ year }} Deep Dive · Built with Vue 3</p>
+      <p class="footer-copy">© {{ year }} Deep Dive</p>
     </div>
   </footer>
 </template>

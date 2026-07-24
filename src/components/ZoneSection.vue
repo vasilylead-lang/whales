@@ -1,5 +1,6 @@
 <script setup>
 import WhaleCard from './WhaleCard.vue'
+import WhalePlate from './WhalePlate.vue'
 
 defineProps({
   zone: {
@@ -23,7 +24,12 @@ defineProps({
       </header>
 
       <div v-if="whales.length" class="zone-grid">
-        <WhaleCard v-for="whale in whales" :key="whale.id" :whale="whale" />
+        <component
+          :is="whale.plate ? WhalePlate : WhaleCard"
+          v-for="whale in whales"
+          :key="whale.id"
+          :whale="whale"
+        />
       </div>
 
       <slot />
