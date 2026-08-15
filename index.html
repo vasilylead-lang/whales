@@ -5,14 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#01030a" />
 
-    <!-- Google tag (gtag.js) — Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3KFG7WBXB"></script>
+    <!-- Google tag (gtag.js) — Google Analytics 4, gated by Consent Mode v2.
+         Consent defaults to denied, so no analytics cookies are set and no data
+         is collected until the visitor opts in via the consent banner. This
+         block must run BEFORE gtag.js loads. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() { dataLayer.push(arguments); }
+
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        wait_for_update: 500
+      });
+
+      // Re-apply a previously stored choice before the tag loads.
+      try {
+        if (localStorage.getItem('dd-analytics-consent') === 'granted') {
+          gtag('consent', 'update', { analytics_storage: 'granted' });
+        }
+      } catch (e) { /* storage unavailable — stay denied */ }
+
       gtag('js', new Date());
-      gtag('config', 'G-Q3KFG7WBXB');
+      gtag('config', 'G-Q3KFG7WBXB', { anonymize_ip: true });
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3KFG7WBXB"></script>
 
     <!-- ==========================================================
          PRIMARY SEO

@@ -8,6 +8,7 @@ import WhaleSong from './components/WhaleSong.vue'
 import ConservationSection from './components/ConservationSection.vue'
 import DepthMeter from './components/DepthMeter.vue'
 import SiteFooter from './components/SiteFooter.vue'
+import ConsentBanner from './components/ConsentBanner.vue'
 
 // Deepest depth we map the page scroll onto (m) — the abyssal plain.
 const MAX_DEPTH = 6000
@@ -104,6 +105,8 @@ onBeforeUnmount(() => {
   </main>
 
   <SiteFooter />
+
+  <ConsentBanner />
 </template>
 
 <style scoped>

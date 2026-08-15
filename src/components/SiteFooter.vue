@@ -1,5 +1,8 @@
 <script setup>
+import { useConsent } from '../composables/useConsent.js'
+
 const year = new Date().getFullYear()
+const { reopen } = useConsent()
 </script>
 
 <template>
@@ -24,6 +27,13 @@ const year = new Date().getFullYear()
         <a href="https://www.fisheries.noaa.gov/" target="_blank" rel="noreferrer">NOAA Fisheries</a>
         and the
         <a href="https://www.iucnredlist.org/" target="_blank" rel="noreferrer">IUCN Red List</a>.
+      </p>
+      <p class="footer-legal">
+        <a href="/privacy.html">Privacy &amp; cookies</a>
+        <span aria-hidden="true">·</span>
+        <button type="button" class="footer-link-btn" @click="reopen">
+          Analytics settings
+        </button>
       </p>
       <p class="footer-copy">© {{ year }} Deep Dive</p>
     </div>
@@ -69,6 +79,32 @@ const year = new Date().getFullYear()
   color: var(--color-text-dim);
   max-width: 40rem;
   margin: 0 auto 0.8rem;
+}
+
+.footer-legal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  margin: 0 0 0.5rem;
+  color: var(--color-text-dim);
+}
+
+.footer-link-btn {
+  font: inherit;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-glow-2);
+  cursor: pointer;
+  transition: color var(--dur-interactive) var(--ease);
+}
+
+.footer-link-btn:hover,
+.footer-link-btn:focus-visible {
+  color: var(--color-glow);
+  text-decoration: underline;
 }
 
 .footer-copy {

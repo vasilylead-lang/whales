@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#01030a" />
+    <title>Privacy &amp; Cookies — Deep Dive: The Whales of the Ocean</title>
+    <meta
+      name="description"
+      content="How whales-info.life handles analytics cookies and browser permissions: what is collected, why, how long it is kept, and how to withdraw consent."
+    />
+    <link rel="canonical" href="https://whales-info.life/privacy.html" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="robots" content="index, follow" />
+    <style>
+      :root {
+        --color-glow: #5ffbf1;
+        --color-glow-2: #7ee8fa;
+        --color-accent: #47e0c0;
+        --color-foam: #eaf9fd;
+        --color-text: #d6e6fb;
+        --color-text-dim: #8fb1d6;
+        --color-abyss: #01030a;
+        --color-deep: #04142e;
+        --color-card: rgba(10, 30, 62, 0.55);
+        --color-card-border: rgba(95, 251, 241, 0.22);
+        --color-hairline: rgba(143, 177, 214, 0.18);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        padding: clamp(2.5rem, 8vw, 5rem) 1.25rem clamp(3rem, 10vw, 6rem);
+        font-family: "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.7;
+        color: var(--color-text);
+        background:
+          radial-gradient(120% 80% at 50% 0%, #062a5a 0%, transparent 60%),
+          linear-gradient(180deg, #04142e 0%, var(--color-abyss) 100%);
+        background-attachment: fixed;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      main { max-width: 46rem; margin-inline: auto; }
+
+      a { color: var(--color-glow-2); text-decoration: underline; text-underline-offset: 3px; }
+      a:hover { color: var(--color-glow); }
+
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--color-glow);
+        margin: 0 0 0.6rem;
+      }
+
+      h1 {
+        font-size: clamp(1.9rem, 5vw, 2.8rem);
+        line-height: 1.15;
+        color: var(--color-foam);
+        margin: 0 0 0.5rem;
+        letter-spacing: -0.01em;
+      }
+
+      h2 {
+        font-size: clamp(1.15rem, 2.6vw, 1.45rem);
+        color: var(--color-foam);
+        margin: 2.4rem 0 0.6rem;
+      }
+
+      h3 {
+        font-size: 1rem;
+        color: var(--color-glow-2);
+        margin: 1.5rem 0 0.4rem;
+      }
+
+      .meta {
+        color: var(--color-text-dim);
+        font-size: 0.9rem;
+        margin: 0 0 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--color-hairline);
+      }
+
+      .card {
+        background: var(--color-card);
+        border: 1px solid var(--color-card-border);
+        border-radius: 14px;
+        padding: clamp(1.1rem, 3vw, 1.6rem);
+        margin: 1.4rem 0;
+      }
+
+      .card--plain {
+        border-color: var(--color-hairline);
+        background: rgba(4, 20, 46, 0.5);
+      }
+
+      ul { padding-left: 1.2rem; }
+      li { margin-bottom: 0.5rem; }
+      li::marker { color: var(--color-accent); }
+
+      dl { margin: 0; }
+      dt {
+        font-weight: 700;
+        color: var(--color-foam);
+        margin-top: 1rem;
+      }
+      dd { margin: 0.15rem 0 0; }
+
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.9em;
+        background: rgba(95, 251, 241, 0.1);
+        border: 1px solid var(--color-card-border);
+        border-radius: 5px;
+        padding: 0.1em 0.4em;
+        color: var(--color-glow-2);
+      }
+
+      table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; font-size: 0.92rem; }
+      th, td { text-align: left; padding: 0.55rem 0.6rem; border-bottom: 1px solid var(--color-hairline); }
+      th { color: var(--color-text-dim); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; }
+      .table-wrap { overflow-x: auto; }
+
+      .back {
+        display: inline-block;
+        margin-top: 2.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--color-hairline);
+        width: 100%;
+        font-weight: 600;
+      }
+
+      button.linklike {
+        font: inherit;
+        padding: 0;
+        border: 0;
+        background: none;
+        color: var(--color-glow-2);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        cursor: pointer;
+      }
+      button.linklike:hover { color: var(--color-glow); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">Deep Dive</p>
+      <h1>Privacy &amp; Cookies</h1>
+      <p class="meta">
+        Website: <strong>Deep Dive — The Whales of the Ocean</strong>
+        (<a href="https://whales-info.life/">whales-info.life</a>)<br />
+        Last updated: 15 August 2026
+      </p>
+
+      <p>
+        This is an educational, non-commercial site about whales. It has no accounts,
+        no sign-up, no comments and no shop. This notice explains the one thing the
+        site does collect — anonymous usage statistics — and confirms what it does
+        <em>not</em> collect.
+      </p>
+
+      <h2>Browser permissions</h2>
+      <div class="card card--plain">
+        <p style="margin: 0">
+          <strong>This site requests no browser permissions.</strong> It never asks for
+          your camera, microphone, location, notifications, clipboard, Bluetooth, or
+          access to your files. If any website claiming to be this one asks for those,
+          decline it.
+        </p>
+      </div>
+
+      <h2>Why we ask about analytics</h2>
+      <p>
+        We use <strong>Google Analytics 4</strong> to count visits and see which depth
+        zones and species people actually read, so we can improve the guide. That is the
+        only reason.
+      </p>
+      <p>
+        Analytics is <strong>off by default</strong>. Nothing is collected and no
+        analytics cookies are set unless you choose “Allow analytics” in the banner. We
+        use Google Consent Mode, so the tag stays blocked until you agree.
+      </p>
+
+      <h2>What is processed if you agree</h2>
+      <ul>
+        <li>Pages and sections viewed, and how long you spend on them.</li>
+        <li>Approximate location (country or city level), derived from your IP address.</li>
+        <li>Device and browser type, screen size, and operating system.</li>
+        <li>How you arrived (for example a search engine or a direct link).</li>
+        <li>A randomly generated identifier stored in a cookie, so repeat visits are not double-counted.</li>
+      </ul>
+      <p>
+        Your IP address is anonymised (<code>anonymize_ip</code>) before storage. We do
+        not collect your name, email address or any other information that identifies
+        you personally, and we do not use this data for advertising or profiling.
+        Advertising, ad personalisation and ad-user-data storage are all disabled.
+      </p>
+
+      <h3>Cookies used</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Cookie</th><th>Purpose</th><th>Lifetime</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>_ga</code></td><td>Distinguishes visitors</td><td>2 years</td></tr>
+            <tr><td><code>_ga_Q3KFG7WBXB</code></td><td>Maintains session state</td><td>2 years</td></tr>
+            <tr>
+              <td><code>dd-analytics-consent</code></td>
+              <td>Remembers your choice here (local storage, not sent anywhere)</td>
+              <td>Until you clear it</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 0.92rem; color: var(--color-text-dim)">
+        The consent record is stored in your browser only. If you decline, no
+        <code>_ga</code> cookies are created at all.
+      </p>
+
+      <h2>Storage, sharing and retention</h2>
+      <dl>
+        <dt>Processor</dt>
+        <dd>
+          Google (for visitors in the EEA and the UK, Google Ireland Limited) processes
+          this data on our behalf as our analytics provider. See
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Google’s Privacy Policy</a>
+          and
+          <a href="https://business.safety.google/privacy/" target="_blank" rel="noreferrer">Google’s data practices</a>.
+        </dd>
+
+        <dt>Sharing</dt>
+        <dd>
+          We do not sell, rent or share your data with anyone else. It is not passed to
+          advertisers or data brokers.
+        </dd>
+
+        <dt>Retention</dt>
+        <dd>
+          User- and event-level data is kept for the retention period configured in our
+          Google Analytics property, then deleted automatically. Aggregated, non-identifying
+          reports (such as “1,200 visits in July”) may be kept longer.
+        </dd>
+
+        <dt>Security</dt>
+        <dd>
+          The site is served only over HTTPS. Data in transit is encrypted, and the
+          analytics data is held in Google’s infrastructure under their security controls.
+        </dd>
+      </dl>
+
+      <h2>Your choices</h2>
+      <p>Analytics is entirely optional — the site works identically either way. You can:</p>
+      <ul>
+        <li><strong>Allow</strong> analytics in the consent banner.</li>
+        <li><strong>Decline</strong> and keep reading with nothing collected.</li>
+        <li>
+          <strong>Change your mind at any time</strong> using “Analytics settings” in the
+          site footer, or
+          <button type="button" class="linklike" id="reset-consent">reset your choice here</button>.
+        </li>
+        <li>
+          <strong>Clear the cookies</strong> through your browser settings, per site or
+          globally. Most browsers can also block cookies entirely or send a
+          “Do Not Track” signal.
+        </li>
+      </ul>
+
+      <h2>Legal basis</h2>
+      <p>
+        Where the GDPR applies, our legal basis for analytics is your
+        <strong>consent</strong> (Article 6(1)(a)), which you give in the banner and may
+        withdraw at any time without giving a reason. Withdrawing consent does not affect
+        data already processed lawfully beforehand.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        For any privacy question — including a request to access or delete data — write to
+        <a href="mailto:privacy@whales-info.life">privacy@whales-info.life</a>. You also
+        have the right to complain to your local data protection authority.
+      </p>
+
+      <a class="back" href="/">← Back to the dive</a>
+    </main>
+
+    <script>
+      // "Reset your choice" — clear the stored decision and return to the site,
+      // where the consent banner will appear again.
+      document.getElementById('reset-consent').addEventListener('click', function () {
+        try {
+          localStorage.removeItem('dd-analytics-consent');
+        } catch (e) { /* storage unavailable */ }
+        this.textContent = 'Choice reset — returning to the site…';
+        setTimeout(function () { window.location.href = '/'; }, 900);
+      });
+    </script>
+  </body>
+</html>
