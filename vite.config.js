@@ -2,9 +2,8 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 // https://vite.dev/config/
-// `base` is set to a relative path so the built site works whether it is served
-// from a domain root or a sub-path. Swap to '/' (or '/whales/') before deploy.
+// Served from the domain root at https://whales-info.life
 export default defineConfig({
-  base: './',
+  base: '/',
   plugins: [vue()],
 })

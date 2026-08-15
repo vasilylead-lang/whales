@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Single-page site: one canonical URL. Section anchors are not separate URLs.
-     Swap https://whales.example.com/ for the real production domain before deploy. -->
+<!-- Single-page site: one canonical URL. Section anchors are not separate URLs. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://whales.example.com/</loc>
+    <loc>https://whales-info.life/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
